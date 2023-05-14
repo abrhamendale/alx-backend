@@ -36,8 +36,8 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         assert isinstance(page, int)
         assert isinstance(page_size, int)
-        assert page >= 0
-        assert page_size >= 0
+        assert page > 0
+        assert page_size > 0
         i = Server.index_range(page, page_size)
         ls = []
         if i[0] < 0 or i[1] > len(self.dataset()):
