@@ -54,7 +54,7 @@ class Server:
         p_size = len(lst)
         _p = page
         d = lst
-        if page + 1 < len(self.dataset()):
+        if d and page + 1 < len(self.dataset()):
             n_page = page + 1
         else:
             n_page = None
