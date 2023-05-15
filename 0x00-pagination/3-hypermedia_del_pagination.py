@@ -26,10 +26,10 @@ class Server:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
-                
+
                 self.__dataset = dataset[1:]
                 return self.__dataset
-    
+
     def indexed_dataset(self) -> Dict[int, List]:
         """
         Dataset indexed by sorting position, starting a
@@ -41,7 +41,7 @@ class Server:
                     i: dataset[i] for i in range(len(dataset))
                     }
             return self.__indexed_dataset
-    
+
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         assert index >= 0
         assert page_size >= 0
@@ -62,4 +62,5 @@ class Server:
                 if self.__indexed_dataset.get(i):
                     dat.append(self.__indexed_dataset.get(i))
 
-        return ({'index': c_index, 'data': dat, 'page_size':p_size, 'next_index': n_index})
+        return ({'index': c_index, 'data': dat, 'page_size':
+                p_size, 'next_index': n_index})
