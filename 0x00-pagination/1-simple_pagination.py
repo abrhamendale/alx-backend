@@ -40,9 +40,12 @@ class Server:
         assert page_size > 0
         i = Server.index_range(page, page_size)
         ls = []
-        if i[0] < 0 or i[1] >= len(self.dataset()):
+        end_index = i[1]
+        if i[0] < 0 or i[0] > len(self.dataset()):
             return ([])
-        for j in range(i[0], i[1]):
+        if i[1] > len(self.dataset()):
+            end_index = len(self.dataset())
+        for j in range(i[0], end_index):
             if (self.dataset())[j]:
                 ls.append((self.dataset())[j])
         return (ls)
