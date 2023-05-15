@@ -50,13 +50,11 @@ class Server:
         p_size = page_size
         dat = []
         count = 0
-        print(index, index + page_size)
         for i in range(index, index + page_size):
             if self.__indexed_dataset.get(i):
                 dat.append(self.__indexed_dataset.get(i))
             else:
                 count = count + 1
-        print(count)
         if count:
             for i in range(index + page_size, index + page_size + count):
                 if self.__indexed_dataset.get(i):
