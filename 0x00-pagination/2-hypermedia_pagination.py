@@ -65,6 +65,6 @@ class Server:
         if p_size:
             t_pages = round(len(self.dataset()) / p_size)
         else:
-            t_pages = len(self.dataset())
+            t_pages = round(len(self.dataset()) / page_size) + 1
         return ({"page_size": p_size, "page": _p, "data": d, "next_page":
                 n_page, "prev_page": p_page, "total_pages": t_pages})
