@@ -40,6 +40,8 @@ class Server:
         assert page_size > 0
         i = Server.index_range(page, page_size)
         ls = []
+        if self.dataset() is None:
+            return ([])
         end_index = i[1]
         if i[0] < 0 or i[0] > len(self.dataset()):
             return ([])
