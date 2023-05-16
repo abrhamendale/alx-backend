@@ -39,9 +39,9 @@ class LIFOCache(BaseCaching):
             if self.cache_data is None:
                 self.lpush = key
             self.cache_data[key] = item
-            if key not in self.key_order:
-                self.key_order.append(key)
-                self.last_key.append(1)
+            """if key not in self.key_order:"""
+            self.key_order.append(key)
+            self.last_key.append(1)
 
     def get(self, key):
         """
