@@ -31,6 +31,8 @@ class LIFOCache(BaseCaching):
                         self.last_key[i] = 0
                         del self.cache_data[self.key_order[i]]
                         print("DISCARD:", self.key_order[i])
+                        self.key_order.remove(self.key_order[i])
+                        del self.last_key[i]
                         break
 
         if key and item:
@@ -45,5 +47,5 @@ class LIFOCache(BaseCaching):
         """
         Retrieves from the cache
         """
-        if key and item:
+        if key and key in self.cache_data.keys():
             return (self.cache_data[key])

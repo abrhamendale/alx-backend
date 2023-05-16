@@ -45,5 +45,5 @@ class FIFOCache(BaseCaching):
         """
         Retrieves from the cache
         """
-        if key and item:
+        if key and key in self.cache_data.keys():
             return (self.cache_data[key])

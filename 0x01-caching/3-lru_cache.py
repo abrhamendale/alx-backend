@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LRU
+LRU cache
 """
 
 
@@ -14,34 +14,45 @@ class LRUCache(BaseCaching):
 
     def __init__(self):
         """
-        Initializes a new LRU instance.
+        Initializes a new LRU cache instance.
         """
-        self.key_order = []
-        self.last_key = []
+        self.lru_order = []
+        self.lru_key = []
+        self.lru_bit = 0
+        self.inc = 1
         super().__init__()
 
     def put(self, key, item):
         """
         Adds to the dictionary.
         """
-        if key not in self.key_order and len(self.cache_data) >= self.MAX_ITEMS:
-            for i in range(len(self.last_key) - 1, 0, -1):
-                if self.last_key[i] == 1:
-                    self.last_key[i] = 0
-                    del self.cache_data[self.key_order[i]]
-                    print("DISCARD:", self.key_order[i])
-                    break
+        if key not in self.lru_order:
+            if len(self.cache_data) >= self.MAX_ITEMS:
+                self.lru_bit = self.lru_key.index(min(self.lru_key))
+                del self.cache_data[self.lru_order[self.lru_bit]]
+                print("DISCARD:", self.lru_order[self.lru_bit])
+                self.lru_order.remove(self.lru_order[self.lru_bit])
+                self.lru_key.remove(self.lru_key[self.lru_bit])
 
         if key and item:
-            if self.cache_data is None:
-                self.lpush = key
             self.cache_data[key] = item
-            self.key_order.append(key)
-            self.last_key.append(1)
+            if key not in self.lru_order:
+                self.lru_order.append(key)
+                self.lru_key.append(self.inc)
+                self.inc = self.inc + 1
+            else:
+                self.lru_key[self.lru_order.index(key)] = self.inc
+                self.inc = self.inc + 1
 
     def get(self, key):
         """
         Retrieves from the cache
         """
-        if key and item:
+        if key and key in self.cache_data:
+            for i in range(0, len(self.lru_order)):
+                if self.lru_order[i] == key:
+                    self.lru_key[i] = self.inc
+                    self.inc = self.inc + 1
             return (self.cache_data[key])
+        else:
+            return (None)
