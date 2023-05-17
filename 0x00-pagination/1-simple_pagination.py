@@ -14,6 +14,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """Initializes a new server instance."""
         self.__dataset = None
 
     def dataset(self) -> List[List]:
@@ -34,6 +35,7 @@ class Server:
         return ((start, end))
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """Retrieves a page."""
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert page > 0
