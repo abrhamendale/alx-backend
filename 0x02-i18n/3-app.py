@@ -3,18 +3,18 @@
 
 
 from flask_babel import Babel, lazy_gettext as _l
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 
 class Config(object):
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_LOCALE = 'fr'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-app.config.from_object(Config)
 app = Flask(__name__)
-babel = Babel(app, BABEL_DEFAULT_LOCALE='en', BABEL_DEFAULT_TIMEZONE='UTC')
+app.config.from_object(Config)
+babel = Babel(app)
 
 
 @babel.localeselector
@@ -24,5 +24,5 @@ def get_locale():
 
 @app.route('/')
 def index():
-    return render_template('0-index.html', title=_l("Welcome to Holberton"),
-                           header=_l("Hello world"))
+    return render_template('3-index.html', home_title=_l("Welcome
+                           to Holberton"), home_header=_l("Hello world"))
