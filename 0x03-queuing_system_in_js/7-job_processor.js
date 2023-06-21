@@ -7,21 +7,6 @@ const obj = [
   '4153518780',
   '4153518781'
 ]
-/*
-let kue_job = push_notification_code.create('kue_1', obj).save(
-  function(err) {
-    if(!err) {
-      console.log(`Notification job created: ${kue_job.id}`)
-    }
-  }
-)
-kue_job.attempts(3).backoff( true )
-kue_job.on('complete', function(result){
-  console.log('Notification job completed', result)
-}).on('failed attempt', function(errorMessage, doneAttempts){
-  console.log('Notification job failed');
-})
-*/
 
 push_notification_code_2.process('que', function(job, done){
   sendNotification(job.data.phoneNumber, job.data.message, job, done)

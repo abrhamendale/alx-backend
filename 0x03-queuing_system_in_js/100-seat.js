@@ -52,3 +52,7 @@ app.get('/process', function (req, res) {
     Error('Not enough seats available')
   
   return jsonify({"status": "Queue processing"})
+
+app.listen(port, function () {
+  console.log(`Example app listening on port ${port}!`);
+});

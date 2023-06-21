@@ -5,7 +5,7 @@ const kue = require('kue')
   , push_notification_code_3 = kue.createQueue()
 
 function createPushNotificationsJobs(jobs, queue) {
-  if (!isarray(jobs)) {
+  if (!Array.isArray(jobs)) {
     Error('Jobs is not an array')
   }
   for (let i = 0; i < jobs.length; i++) {

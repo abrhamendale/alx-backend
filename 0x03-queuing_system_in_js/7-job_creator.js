@@ -64,5 +64,5 @@ for (let i = 0; i < 11; i++) {
     console.log(`Notification job ${job_1.id} failed:`, errorMessage)
   }).on('progress', function(progress, data){
     console.log(`Notification ${job_1.id} ${progress}% complete`)
-  }).removeOnComplete(true).save()
+  }).removeOnComplete(true)
 }
